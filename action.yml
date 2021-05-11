@@ -11,6 +11,9 @@ inputs:
   deta-project:
     description: 'Deta project name'
     default: 'default'
+  deta-project-dir:
+    description: 'Directory of the project'
+    default: '.'
     
 runs:
   using: "composite"
@@ -38,6 +41,7 @@ runs:
       shell: bash
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta-access-token }}
+        cd ${{ inputs.deta-project-dir }}
         ~/.deta/bin/deta deploy
         
 branding:
